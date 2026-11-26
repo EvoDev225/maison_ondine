@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maison Ondine — Hôtel boutique & appartements meublés, Abidjan (démo)</title>
+<meta name="description" content="Site de démonstration fictif : hôtel boutique et appartements meublés à Riviera Golf, Cocody, Abidjan.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A1418">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A1418'/%3E%3Cpath d='M5 19c3.5-3 7.5-3 11 0s7.5 3 11 0M5 13c3.5-3 7.5-3 11 0s7.5 3 11 0' fill='none' stroke='%23A9E7F5' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Jost:wght@300;400;500&family=Marcellus&display=swap" rel="stylesheet">
+<script>
+  // Animations seulement si l'utilisateur ne demande pas de réduire les mouvements
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches) document.documentElement.classList.add('motion');
+</script>
+<style>
+:root {
+  --night: #0A1418;
+  --deep: #061013;
+  --panel: #101D22;
+  --block: #15262D;
+  --ink: #EAF3F4;
+  --ink-2: #93A7AD;
+  --rule: #213239;
+  --cyan: #A9E7F5;
+  --cyan-2: #7FD3E6;
+  --on-cyan: #0A1418;
+  --sand: #E9D9BF;
+  --serif: 'Marcellus', 'Optima', 'Candara', serif;
+  --text: 'Jost', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+  --g: clamp(20px, 4vw, 56px);
+  --sec: clamp(96px, 13vw, 180px);
+  --ease: cubic-bezier(.2, .7, .1, 1);
+  --nav-h: 76px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--night); }
+body { margin: 0; background: var(--night); color: var(--ink); font-family: var(--text); font-weight: 300; font-size: 17px; line-height: 1.6; overflow-x: clip; -webkit-font-smoothing: antialiased; }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; padding: 0; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+::selection { background: var(--cyan); color: var(--on-cyan); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.mono { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; font-weight: 400; }
+.serif { font-family: var(--serif); font-weight: 400; }
+.wrap { padding-left: var(--g); padding-right: var(--g); }
+.cap { font-family: var(--mono); font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--cyan); margin: 0 0 22px; }
+.cap::before { content: '('; } .cap::after { content: ')'; }
+.h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5.4vw, 76px); line-height: 1.04; letter-spacing: -.01em; margin: 0; }
+.lead { color: var(--ink-2); font-size: clamp(16px, 1.3vw, 19px); max-width: 52ch; margin: 0; }
+h1, h2, h3, blockquote { text-wrap: balance; }
+.line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+.line > span { display: block; }
+
+/* Boutons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 28px; border-radius: 999px; font-size: 15px; font-weight: 400; letter-spacing: .02em; white-space: nowrap; transition: background .35s, color .35s, border-color .35s, transform .35s var(--ease); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn--fill { background: var(--cyan); color: var(--on-cyan); }
+.btn--fill:hover { background: #fff; }
+.btn--line { border: 1px solid rgba(234, 243, 244, .45); color: var(--ink); }
+.btn--line:hover { border-color: var(--cyan); color: var(--cyan); }
+.btn:active { transform: scale(.97); }
+
+/* ============ Porte (moment signature) ============ */
+.door { position: fixed; inset: 0; z-index: 100; perspective: 1800px; pointer-events: none; display: none; }
+.motion .door { display: block; pointer-events: auto; }
+.door.is-done { display: none; }
+.door__light { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, rgba(169, 231, 245, .55), rgba(255, 255, 255, .85), rgba(169, 231, 245, .55), transparent); filter: blur(6px); opacity: 0; }
+.door__leaf { position: absolute; top: 0; bottom: 0; width: 50.2%; background: linear-gradient(180deg, #0E1C21 0%, #0A1418 55%, #081115 100%); backface-visibility: hidden; will-change: transform; overflow: hidden; }
+.door__leaf--l { left: 0; transform-origin: 0 50%; box-shadow: inset -1px 0 0 rgba(169, 231, 245, .18); }
+.door__leaf--r { right: 0; transform-origin: 100% 50%; box-shadow: inset 1px 0 0 rgba(169, 231, 245, .18); }
+.door__leaf::before { content: ''; position: absolute; top: 9vh; bottom: 9vh; left: 4.5vw; right: 4.5vw; border: 1px solid rgba(169, 231, 245, .07); border-radius: 2px; }
+.door__leaf::after { content: ''; position: absolute; top: 13vh; bottom: 13vh; left: 6.5vw; right: 6.5vw; border: 1px solid rgba(169, 231, 245, .045); }
+.door__handle { position: absolute; top: 50%; width: 3px; height: 74px; margin-top: calc(clamp(40px, 6vw, 100px) + 36px); border-radius: 3px; background: var(--cyan); box-shadow: 0 0 18px rgba(169, 231, 245, .55); }
+.door__leaf--l .door__handle { right: 22px; }
+.door__leaf--r .door__handle { left: 22px; }
+.door__word { position: absolute; top: 50%; transform: translateY(-62%); font-family: var(--serif); font-size: clamp(34px, 7.4vw, 128px); letter-spacing: .1em; line-height: 1; white-space: nowrap; color: var(--ink); z-index: 1; }
+.door__leaf--l .door__word { right: .26em; }
+.door__leaf--r .door__word { left: .32em; }
+.door__word span { display: inline-block; }
+.door__rule { position: absolute; left: 50%; top: calc(50% + clamp(24px, 4.2vw, 72px)); width: clamp(160px, 30vw, 480px); height: 1px; margin-left: calc(clamp(160px, 30vw, 480px) / -2); background: var(--cyan); transform: scaleX(0); z-index: 2; }
+.door__tag { position: absolute; left: 50%; top: calc(50% + clamp(40px, 6vw, 100px)); transform: translateX(-50%); color: var(--ink-2); z-index: 2; white-space: nowrap; }
+
+/* ============ Navigation ============ */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: var(--nav-h); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 var(--g); transition: transform .7s var(--ease), opacity .5s, background .45s, border-color .45s, backdrop-filter .45s; border-bottom: 1px solid transparent; }
+.nav.is-hidden { transform: translateY(-110%); opacity: 0; pointer-events: none; transition: transform .55s cubic-bezier(.6, 0, .8, .2), opacity .45s .1s, background .45s, border-color .45s; }
+.nav.is-solid { background: rgba(10, 20, 24, .78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom-color: rgba(169, 231, 245, .1); }
+.nav__menu { justify-self: start; display: inline-flex; align-items: center; gap: 12px; height: 44px; }
+.nav__menu i { width: 22px; height: 10px; position: relative; }
+.nav__menu i::before, .nav__menu i::after { content: ''; position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; transition: transform .4s var(--ease); }
+.nav__menu i::before { top: 0; } .nav__menu i::after { bottom: 0; right: 7px; }
+.nav__menu:hover i::after { right: 0; }
+.nav__logo { font-family: var(--serif); font-size: 19px; letter-spacing: .3em; white-space: nowrap; text-align: center; }
+.nav__logo small { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: .3em; color: var(--cyan); margin-top: 2px; }
+.nav__cta { justify-self: end; height: 44px; padding: 0 22px; font-size: 14px; }
+.menu { position: fixed; inset: 0; z-index: 60; background: var(--deep); display: flex; flex-direction: column; justify-content: center; padding: calc(var(--nav-h) + 20px) var(--g) 40px; clip-path: inset(0 0 100% 0); visibility: hidden;
+  /* fermeture : les liens sortent d'abord, puis le rideau remonte ; visibility attend la fin */
+  transition: clip-path .75s cubic-bezier(.7, 0, .3, 1) .22s, visibility 0s linear .97s; }
+.menu.is-open { clip-path: inset(0 0 0 0); visibility: visible; transition: clip-path .85s var(--ease), visibility 0s; }
+.menu li { overflow: hidden; }
+.menu li a { transform: translateY(105%); opacity: 0;
+  transition: transform .42s cubic-bezier(.6, 0, .8, .2) calc((6 - var(--i, 0)) * 25ms), opacity .3s calc((6 - var(--i, 0)) * 25ms), color .3s, padding .4s var(--ease); }
+.menu.is-open li a { transform: none; opacity: 1;
+  transition: transform .9s var(--ease) calc(.28s + var(--i, 0) * 60ms), opacity .6s calc(.28s + var(--i, 0) * 60ms), color .3s, padding .4s var(--ease); }
+.menu__close, .menu__foot { opacity: 0; transform: translateY(-8px); transition: opacity .25s, transform .3s; }
+.menu.is-open .menu__close, .menu.is-open .menu__foot { opacity: 1; transform: none; transition: opacity .6s .55s, transform .8s var(--ease) .55s; }
+@media (prefers-reduced-motion: reduce) { .menu, .menu * { transition-duration: .01s !important; transition-delay: 0s !important; } }
+.menu__close { position: absolute; top: 16px; left: var(--g); height: 44px; display: inline-flex; align-items: center; gap: 12px; }
+.menu__close i { width: 18px; height: 18px; position: relative; }
+.menu__close i::before, .menu__close i::after { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1.5px; background: currentColor; transform: rotate(45deg); }
+.menu__close i::after { transform: rotate(-45deg); }
+.menu ol { list-style: none; margin: 0; padding: 0; counter-reset: m; }
+.menu li { counter-increment: m; border-bottom: 1px solid var(--rule); }
+.menu li a { display: flex; align-items: baseline; gap: 18px; padding: 12px 0; font-family: var(--serif); font-size: clamp(30px, 5vw, 60px); line-height: 1.1; }
+.menu li a::before { content: counter(m, decimal-leading-zero); font-family: var(--mono); font-size: 12px; color: var(--cyan); letter-spacing: .1em; }
+.menu li a:hover { color: var(--cyan); padding-left: 12px; }
+.menu__foot { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 34px; color: var(--ink-2); }
+
+/* ============ Hero ============ */
+.hero { position: relative; height: 230vh; }
+.hero__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.hero__media { position: absolute; inset: 0; clip-path: inset(0px 0px 0px 0px round 0px); will-change: clip-path; background: #0d1b20; }
+.hero__media video, .hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 20, 24, .55) 0%, rgba(10, 20, 24, .08) 32%, rgba(10, 20, 24, .18) 60%, rgba(10, 20, 24, .78) 100%); }
+.hero__content { position: absolute; left: 0; right: 0; bottom: clamp(180px, 27vh, 260px); text-align: center; padding: 0 var(--g); }
+.hero__kicker { color: var(--ink); opacity: .9; margin: 0 0 18px; }
+.hero__title { font-family: var(--serif); font-weight: 400; font-size: clamp(52px, 9.6vw, 168px); line-height: .98; letter-spacing: -.015em; margin: 0; text-shadow: 0 2px 40px rgba(0, 0, 0, .25); }
+.hero__title em { font-style: normal; color: var(--cyan); }
+.book { position: absolute; left: 50%; bottom: 66px; transform: translateX(-50%); width: min(980px, calc(100% - 2 * var(--g))); display: grid; grid-template-columns: 1fr 1fr 1fr auto; align-items: stretch; background: rgba(10, 20, 24, .62); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(169, 231, 245, .18); border-radius: 999px; padding: 6px; }
+.book label { display: flex; flex-direction: column; justify-content: center; padding: 6px 26px; border-right: 1px solid rgba(169, 231, 245, .14); min-width: 0; cursor: pointer; }
+.book label span { color: var(--cyan); font-size: 10.5px; }
+.book input, .book select { background: none; border: 0; padding: 2px 0 0; font-size: 15px; color: var(--ink); color-scheme: dark; outline: none; min-width: 0; width: 100%; }
+.book select option { background: var(--panel); }
+.book .btn { height: 56px; margin-left: 6px; }
+.book-m { display: none; }
+
+/* ============ Introduction ============ */
+.intro { position: relative; z-index: 2; margin-top: -21vh; padding: 0 var(--g) var(--sec); text-align: center; }
+.intro__kicker { color: var(--cyan); margin: 0 0 20px; }
+.intro__title { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 5vw, 72px); line-height: 1.05; margin: 0 auto 26px; max-width: 16ch; }
+.intro__text { max-width: 62ch; margin: 0 auto; color: var(--ink-2); font-size: clamp(16px, 1.35vw, 19px); }
+.intro__motto { font-family: var(--serif); font-size: clamp(20px, 1.9vw, 26px); color: var(--sand); margin: 26px 0 0; }
+.feats { list-style: none; margin: clamp(56px, 7vw, 96px) auto 0; padding: 0; max-width: 1040px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.feats li { display: flex; flex-direction: column; align-items: center; gap: 16px; font-size: 15px; color: var(--ink); }
+.feats svg { width: 64px; height: 64px; color: var(--cyan); }
+.feats svg * { fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ============ Bandeau direct ============ */
+.direct { background: var(--block); padding: clamp(72px, 9vw, 120px) var(--g); text-align: center; position: relative; overflow: hidden; }
+.direct::before { content: ''; position: absolute; left: 50%; top: 100%; width: 120vw; height: 60vw; transform: translate(-50%, -38%); background: radial-gradient(closest-side, rgba(169, 231, 245, .12), transparent); pointer-events: none; }
+.direct h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4.4vw, 62px); line-height: 1.08; margin: 0 auto 18px; max-width: 18ch; }
+.direct p { color: var(--ink-2); margin: 0 auto 34px; max-width: 48ch; }
+.direct ul { list-style: none; padding: 0; margin: 34px 0 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 34px; color: var(--ink-2); }
+.direct ul li::before { content: '◆'; color: var(--cyan); margin-right: 10px; font-size: 8px; vertical-align: 2px; }
+
+/* ============ Univers (carrousel) ============ */
+.uni { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: #000; touch-action: pan-y; }
+.uni__slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; }
+.uni__slide.is-on { opacity: 1; visibility: visible; z-index: 1; }
+.uni__slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.uni__slide::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 52%, rgba(6, 16, 19, .52), rgba(6, 16, 19, .78)); }
+.uni__body { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--nav-h) var(--g) 120px; }
+.uni__kicker { color: var(--cyan); margin: 0 0 12px; }
+.uni__title { font-family: var(--serif); font-weight: 400; font-size: clamp(64px, 11vw, 190px); line-height: .95; margin: 0; }
+.uni__sub { font-family: var(--serif); font-size: clamp(20px, 2vw, 28px); margin: 18px 0 10px; }
+.uni__text { color: rgba(234, 243, 244, .82); max-width: 54ch; margin: 0 0 32px; }
+.uni__btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.uni__ui { position: absolute; z-index: 3; left: var(--g); right: var(--g); bottom: 62px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.uni__arrow { width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(234, 243, 244, .5); display: grid; place-items: center; transition: border-color .3s, color .3s, background .3s; }
+.uni__arrow:hover { border-color: var(--cyan); color: var(--on-cyan); background: var(--cyan); }
+.uni__arrow svg { width: 18px; height: 18px; }
+.uni__count { display: flex; align-items: center; gap: 14px; }
+.uni__bar { width: clamp(80px, 14vw, 200px); height: 1px; background: rgba(234, 243, 244, .25); position: relative; overflow: hidden; }
+.uni__bar i { position: absolute; inset: 0; background: var(--cyan); transform-origin: 0 50%; transform: scaleX(0); }
+.uni__tabs { display: flex; gap: 26px; }
+.uni__tabs button { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: rgba(234, 243, 244, .6); padding: 8px 0; border-bottom: 1px solid transparent; transition: color .3s, border-color .3s; }
+.uni__tabs button[aria-current="true"] { color: var(--cyan); border-color: var(--cyan); }
+
+/* ============ Hébergements (masonry) ============ */
+.stays { padding: var(--sec) var(--g); }
+.stays__head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; margin-bottom: 44px; }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+.chip { height: 42px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--rule); font-size: 14px; transition: background .3s, color .3s, border-color .3s; }
+.chip:hover { border-color: var(--cyan); }
+.chip[aria-pressed="true"] { background: var(--cyan); color: var(--on-cyan); border-color: var(--cyan); }
+.masonry { display: flex; gap: clamp(14px, 2vw, 28px); align-items: flex-start; }
+.masonry__col { flex: 1; display: flex; flex-direction: column; gap: clamp(26px, 3vw, 44px); min-width: 0; }
+.stay { position: relative; }
+.stay__media { position: relative; overflow: hidden; border-radius: 6px; background: var(--panel); }
+.stay__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease); }
+.stay:hover .stay__media img { transform: scale(1.06); }
+.stay__tag { position: absolute; top: 14px; left: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(10, 20, 24, .72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: 10.5px; }
+.stay__tag--sig { left: auto; right: 14px; background: var(--cyan); color: var(--on-cyan); }
+.stay__book { position: absolute; left: 14px; right: 14px; bottom: 14px; height: 48px; border-radius: 999px; background: var(--cyan); color: var(--on-cyan); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px; opacity: 0; transform: translateY(14px); transition: opacity .4s, transform .5s var(--ease), background .3s; }
+.stay__book svg { width: 16px; height: 16px; }
+.stay:hover .stay__book, .stay__book:focus-visible { opacity: 1; transform: none; }
+.stay__book:hover { background: #fff; }
+.stay__info { padding-top: 16px; }
+.stay__meta { color: var(--ink-2); font-size: 10.5px; }
+.stay__name { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 2vw, 28px); line-height: 1.15; margin: 6px 0 10px; }
+.stay__specs { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; color: var(--ink-2); }
+.stay__specs li::before { content: '—'; color: var(--cyan); margin-right: 6px; }
+.stay__price { color: var(--sand); font-size: 10.5px; }
+.stay__m { display: none; }
+
+/* ============ Longs séjours ============ */
+.long { background: var(--panel); padding: var(--sec) var(--g); display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(40px, 7vw, 120px); align-items: center; }
+.long__photo { border-radius: 6px; overflow: hidden; aspect-ratio: 4/5; }
+.long__photo img { width: 100%; height: 100%; object-fit: cover; }
+.long__text p { color: var(--ink-2); margin: 24px 0 30px; max-width: 46ch; }
+.checks { list-style: none; margin: 0 0 40px; padding: 0; border-top: 1px solid var(--rule); }
+.checks li { display: flex; align-items: center; gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--rule); }
+.checks svg { width: 22px; height: 22px; flex: none; color: var(--cyan); }
+.checks svg path { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ============ Bannière ============ */
+.banner { position: relative; height: 92vh; min-height: 520px; overflow: hidden; display: grid; place-items: center; }
+.banner img { position: absolute; inset: -12% 0; width: 100%; height: 124%; object-fit: cover; }
+.banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 20, 24, .5), rgba(10, 20, 24, .25) 45%, rgba(10, 20, 24, .7)); }
+.banner blockquote { position: relative; z-index: 1; margin: 0; padding: 0 var(--g); text-align: center; font-family: var(--serif); font-size: clamp(30px, 4.6vw, 68px); line-height: 1.12; max-width: 20ch; }
+.banner blockquote .w { display: inline-block; }
+
+/* ============ Avis ============ */
+.reviews { background: var(--block); padding: var(--sec) var(--g); display: grid; grid-template-columns: .8fr 1.6fr; gap: clamp(40px, 6vw, 100px); }
+.score { position: sticky; top: calc(var(--nav-h) + 40px); align-self: start; }
+.score__num { font-family: var(--serif); font-size: clamp(96px, 12vw, 180px); line-height: .9; display: flex; align-items: baseline; gap: 6px; margin: 26px 0 14px; }
+.score__num small { font-size: .3em; color: var(--ink-2); }
+.stars { position: relative; display: inline-block; width: 140px; height: 24px; }
+.stars svg { position: absolute; inset: 0; width: 140px; height: 24px; }
+.stars__fill { position: absolute; inset: 0; overflow: hidden; width: 96%; }
+.score p { color: var(--ink-2); margin: 12px 0 0; }
+.reviews__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.review { margin: 0; background: rgba(10, 20, 24, .42); border: 1px solid rgba(169, 231, 245, .1); border-radius: 8px; padding: clamp(26px, 2.6vw, 38px); display: flex; flex-direction: column; gap: 22px; }
+.review:nth-child(even) { transform: translateY(48px); }
+.review__q { font-family: var(--serif); font-size: clamp(19px, 1.55vw, 23px); line-height: 1.42; margin: 0; }
+.review__q::before { content: '“'; display: block; color: var(--cyan); font-size: 2.4em; line-height: .6; margin-bottom: 14px; }
+.review footer { margin-top: auto; display: flex; flex-direction: column; gap: 4px; }
+.review footer b { font-weight: 500; }
+.review footer span { color: var(--ink-2); font-size: 10.5px; }
+
+/* ============ Se détendre (vague) ============ */
+.relax { position: relative; padding: clamp(40px, 6vw, 90px) 0; }
+.relax__wave { position: relative; height: 96vh; min-height: 560px; clip-path: url(#waveClip); -webkit-clip-path: url(#waveClip); overflow: hidden; }
+.relax__wave video, .relax__wave img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.relax__wave::after { content: ''; position: absolute; inset: 0; background: rgba(6, 16, 19, .42); }
+.relax__txt { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 var(--g); }
+.relax__txt .cap { color: var(--ink); }
+.relax__txt h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 6vw, 92px); line-height: 1.02; margin: 0 0 20px; max-width: 14ch; }
+.relax__txt p { max-width: 52ch; margin: 0 0 32px; color: rgba(234, 243, 244, .88); }
+
+/* ============ Plan ============ */
+.plan { padding: var(--sec) var(--g); }
+.plan__head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; margin-bottom: 52px; }
+.plan__body { display: grid; grid-template-columns: 300px 1fr; gap: clamp(28px, 4vw, 64px); align-items: center; }
+.legend { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.legend li { border-bottom: 1px solid var(--rule); }
+.legend button { width: 100%; display: flex; align-items: center; gap: 14px; padding: 12px 0; text-align: left; font-size: 15px; transition: color .3s, padding .4s var(--ease); }
+.legend button i { width: 26px; height: 26px; flex: none; border-radius: 50%; border: 1px solid var(--cyan); color: var(--cyan); display: grid; place-items: center; font-family: var(--mono); font-style: normal; font-size: 11px; transition: background .3s, color .3s; }
+.legend button:hover, .legend button.is-on { color: var(--cyan); padding-left: 6px; }
+.legend button.is-on i, .legend button:hover i { background: var(--cyan); color: var(--on-cyan); }
+.map { background: var(--panel); border-radius: 10px; padding: clamp(12px, 2vw, 28px); border: 1px solid var(--rule); }
+.map svg { width: 100%; height: auto; overflow: visible; }
+.map .z { fill: rgba(169, 231, 245, .035); stroke: rgba(169, 231, 245, .55); stroke-width: 1.6; transition: fill .35s, stroke .35s; cursor: pointer; }
+.map .z.is-on { fill: rgba(169, 231, 245, .2); stroke: var(--cyan); }
+.map .z--water { fill: rgba(169, 231, 245, .16); }
+.map .z--water.is-on { fill: rgba(169, 231, 245, .34); }
+.map .d { fill: none; stroke: rgba(169, 231, 245, .28); stroke-width: 1.2; }
+.map .walk { fill: none; stroke: rgba(233, 217, 191, .5); stroke-width: 1.4; stroke-dasharray: 3 7; }
+.map .tree { fill: rgba(127, 211, 230, .05); stroke: rgba(169, 231, 245, .24); stroke-width: 1; }
+.map .pin circle { fill: var(--night); stroke: var(--cyan); stroke-width: 1.4; transition: fill .3s; }
+.map .pin text { fill: var(--cyan); font-family: var(--mono); font-size: 13px; text-anchor: middle; dominant-baseline: central; transition: fill .3s; pointer-events: none; }
+.map .pin.is-on circle { fill: var(--cyan); }
+.map .pin.is-on text { fill: var(--on-cyan); }
+.map .lbl { fill: var(--ink-2); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; }
+.near { margin-top: clamp(40px, 5vw, 64px); display: grid; grid-template-columns: auto repeat(4, 1fr); gap: 20px; align-items: baseline; border-top: 1px solid var(--rule); padding-top: 28px; }
+.near h3 { margin: 0; color: var(--cyan); }
+.near div b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 3.6vw, 52px); line-height: 1; }
+.near div span { color: var(--ink-2); font-size: 15px; }
+
+/* ============ Offres (défilement horizontal) ============ */
+.offers { padding: var(--sec) 0; overflow: hidden; }
+.offers__head { padding: 0 var(--g); display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; margin-bottom: 52px; }
+.offers__track { display: flex; gap: clamp(16px, 2vw, 28px); padding: 0 var(--g); width: max-content; }
+.offer { width: clamp(300px, 29vw, 440px); flex: none; }
+.offer__media { aspect-ratio: 4/5; border-radius: 6px; overflow: hidden; position: relative; }
+.offer__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease); }
+.offer:hover .offer__media img { transform: scale(1.05); }
+.offer__media .mono { position: absolute; top: 14px; left: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(10, 20, 24, .72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: 10.5px; }
+.offer h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 2.4vw, 34px); margin: 20px 0 8px; }
+.offer p { color: var(--ink-2); margin: 0 0 16px; }
+.offer__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--rule); padding-top: 14px; }
+.offer__foot .mono { color: var(--sand); font-size: 10.5px; }
+.offer__foot a { display: inline-flex; align-items: center; gap: 8px; color: var(--cyan); font-size: 14px; white-space: nowrap; }
+.offer__foot a svg { width: 15px; height: 15px; transition: transform .35s var(--ease); }
+.offer__foot a:hover svg { transform: translateX(4px); }
+
+/* ============ FAQ ============ */
+.faq { background: var(--panel); padding: var(--sec) var(--g); display: grid; grid-template-columns: .8fr 1.6fr; gap: clamp(40px, 6vw, 100px); }
+.faq__list { border-top: 1px solid var(--rule); }
+.qa { border-bottom: 1px solid var(--rule); }
+.qa button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 0; text-align: left; font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); line-height: 1.3; transition: color .3s; }
+.qa button:hover { color: var(--cyan); }
+.qa button i { width: 30px; height: 30px; flex: none; border-radius: 50%; border: 1px solid var(--rule); position: relative; transition: transform .45s var(--ease), border-color .3s; }
+.qa button i::before, .qa button i::after { content: ''; position: absolute; left: 50%; top: 50%; width: 11px; height: 1.4px; background: var(--cyan); transform: translate(-50%, -50%); }
+.qa button i::after { transform: translate(-50%, -50%) rotate(90deg); }
+.qa button[aria-expanded="true"] i { transform: rotate(135deg); border-color: var(--cyan); }
+.qa__a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s var(--ease); }
+.qa__a > div { overflow: hidden; }
+.qa__a p { margin: 0 0 26px; color: var(--ink-2); max-width: 62ch; }
+.qa button[aria-expanded="true"] + .qa__a { grid-template-rows: 1fr; }
+
+/* ============ Réserver ============ */
+.resa { position: relative; isolation: isolate; padding: var(--sec) var(--g); overflow: hidden; display: grid; grid-template-columns: 1fr minmax(0, 560px); gap: clamp(40px, 6vw, 100px); align-items: center; min-height: 100vh; }
+.resa__bg { position: absolute; inset: 0; z-index: -1; }
+.resa__bg video, .resa__bg img { width: 100%; height: 100%; object-fit: cover; }
+.resa__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6, 16, 19, .86) 0%, rgba(6, 16, 19, .5) 50%, rgba(6, 16, 19, .25) 100%); }
+.resa__intro p { color: rgba(234, 243, 244, .8); margin: 26px 0 34px; max-width: 44ch; }
+.resa__contact { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.resa__contact li { display: flex; gap: 14px; align-items: flex-start; }
+.resa__contact svg { width: 20px; height: 20px; flex: none; color: var(--cyan); margin-top: 3px; }
+.resa__contact a:hover { color: var(--cyan); }
+.form { background: rgba(10, 20, 24, .66); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(169, 231, 245, .16); border-radius: 14px; padding: clamp(24px, 3vw, 42px); display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form .full { grid-column: 1 / -1; }
+.form fieldset { border: 0; margin: 0; padding: 0; }
+.form legend, .form label > span { display: block; color: var(--cyan); font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; }
+.form .seg label > span { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 50px; margin: 0; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--rule); font-family: var(--text); font-size: 14.5px; letter-spacing: 0; text-transform: none; color: var(--ink); cursor: pointer; transition: background .3s, border-color .3s, color .3s; }
+.form .seg input:checked + span { background: var(--cyan); color: var(--on-cyan); border-color: var(--cyan); }
+.seg input:focus-visible + span { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.field { width: 100%; height: 52px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--rule); background: rgba(6, 16, 19, .5); color: var(--ink); font-size: 15px; color-scheme: dark; transition: border-color .3s; }
+.field:focus { outline: none; border-color: var(--cyan); }
+select.field option { background: var(--panel); }
+.form .btn { width: 100%; height: 58px; }
+
+/* ============ Footer ============ */
+.foot { background: var(--deep); padding: var(--sec) var(--g) 76px; overflow: hidden; }
+.foot__lead { text-align: center; font-family: var(--serif); font-size: clamp(22px, 2.4vw, 34px); color: var(--ink-2); margin: 0 0 clamp(60px, 8vw, 110px); }
+.foot__grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(40px, 6vw, 100px); }
+.foot__big { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; margin-top: 18px; }
+.foot__big a { font-family: var(--serif); font-size: clamp(34px, 3.7vw, 58px); line-height: 1.1; white-space: nowrap; transition: color .3s; }
+.foot__big a:hover { color: var(--cyan); }
+.foot__groups { border-top: 1px solid var(--rule); }
+.fg { border-bottom: 1px solid var(--rule); }
+.fg summary { list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 18px 0; cursor: pointer; }
+.fg summary::-webkit-details-marker { display: none; }
+.fg summary::after { content: '+'; color: var(--cyan); font-size: 20px; font-family: var(--text); transition: transform .4s var(--ease); }
+.fg[open] summary::after { transform: rotate(45deg); }
+.fg ul { list-style: none; margin: 0; padding: 0 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+.fg a { color: var(--ink-2); transition: color .3s; }
+.fg a:hover { color: var(--cyan); }
+.foot__word { font-family: var(--serif); font-size: 10.6vw; line-height: .9; letter-spacing: .02em; text-align: center; white-space: nowrap; margin: clamp(70px, 9vw, 130px) 0 34px; color: var(--ink); }
+.foot__word span { display: inline-block; }
+.foot__word span.c { color: var(--cyan); }
+.foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; color: var(--ink-2); border-top: 1px solid var(--rule); padding-top: 24px; font-size: 10.5px; }
+.foot__bottom nav { display: flex; gap: 22px; }
+.foot__bottom a:hover { color: var(--cyan); }
+
+/* ============ Flottants ============ */
+.wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 40; width: 60px; height: 60px; border-radius: 50%; background: var(--cyan); color: var(--on-cyan); display: grid; place-items: center; box-shadow: 0 12px 34px rgba(0, 0, 0, .4); transform: scale(0); transition: transform .5s var(--ease), background .3s; }
+.wa-float.is-on { transform: scale(1); }
+.wa-float:hover { background: #fff; }
+.wa-float svg { width: 28px; height: 28px; fill: currentColor; }
+.demo { position: fixed; left: 16px; bottom: 16px; z-index: 40; padding: 7px 13px; border-radius: 999px; background: rgba(6, 16, 19, .8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(169, 231, 245, .22); color: var(--ink); font-size: 10px; display: flex; align-items: center; gap: 8px; pointer-events: none; }
+.demo::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+
+/* ============ Responsive ============ */
+@media (max-width: 1100px) {
+  .reviews, .faq { grid-template-columns: 1fr; }
+  .score { position: static; }
+  .plan__body { grid-template-columns: 1fr; }
+  .legend { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; border-top: 0; }
+  .legend li:nth-child(-n+2) { border-top: 1px solid var(--rule); }
+}
+@media (max-width: 860px) {
+  :root { --nav-h: 64px; }
+  .nav__logo { font-size: 15px; letter-spacing: .24em; }
+  .nav__menu span { display: none; }
+  .nav__cta { height: 40px; padding: 0 16px; font-size: 13px; }
+  .book { display: none; }
+  .book-m { display: flex; position: absolute; left: var(--g); right: var(--g); bottom: 56px; }
+  .book-m .btn { width: 100%; }
+  .hero__content { bottom: 140px; }
+  .intro { margin-top: -25vh; }
+  .feats { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+  .stays__head, .plan__head, .offers__head { grid-template-columns: 1fr; gap: 22px; }
+  .long { grid-template-columns: 1fr; }
+  .long__photo { aspect-ratio: 4/3; }
+  .reviews__grid { grid-template-columns: 1fr; }
+  .review:nth-child(even) { transform: none; }
+  .near { grid-template-columns: 1fr 1fr; }
+  .near h3 { grid-column: 1 / -1; }
+  .offers__track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-width: none; }
+  .offers__track::-webkit-scrollbar { display: none; }
+  .offer { width: 78vw; scroll-snap-align: center; }
+  .resa { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .form > * { min-width: 0; }
+  .resa__bg::after { background: linear-gradient(180deg, rgba(6, 16, 19, .9), rgba(6, 16, 19, .7)); }
+  .foot__grid { grid-template-columns: 1fr; }
+  .uni__tabs { display: none; }
+  .uni__body { padding-bottom: 110px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .nav { grid-template-columns: auto 1fr auto; gap: 8px; }
+  .nav__logo small { display: none; }
+  .stay__specs, .stay__book { display: none; }
+  .stay__m { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; color: var(--cyan); font-size: 13px; }
+  .stay__m svg { width: 13px; height: 13px; }
+  .stay__name { font-size: 18px; }
+  .stay__tag { top: 8px; left: 8px; padding: 4px 8px; font-size: 9px; }
+  .stay__tag--sig { left: auto; right: 8px; }
+  .stay__media:has(.stay__tag--sig) .stay__tag:not(.stay__tag--sig) { display: none; }
+  .uni__ui { bottom: 86px; }
+  .legend { grid-template-columns: 1fr; }
+  .legend li:nth-child(2) { border-top: 0; }
+  .form { grid-template-columns: 1fr; }
+  .form .seg label > span { font-size: 13.5px; }
+  .form .btn { height: auto; min-height: 58px; padding: 10px 18px; white-space: normal; text-align: center; line-height: 1.25; font-size: 14.5px; }
+  .uni__btns .btn { height: 48px; padding: 0 20px; font-size: 14px; }
+  .uni__text { font-size: 15px; }
+  .foot__big a { font-size: 28px; white-space: normal; }
+  .fg ul { grid-template-columns: 1fr; }
+  .wa-float { width: 54px; height: 54px; right: 14px; bottom: 14px; }
+  .demo { left: 10px; bottom: 12px; }
+}
+
+/* Sans animation : tout visible, pas d'épinglage */
+html:not(.motion) .hero { height: auto; }
+html:not(.motion) .hero__pin { position: relative; }
+html:not(.motion) .intro { margin-top: 0; padding-top: var(--sec); }
+html:not(.motion) .wa-float { transform: scale(1); }
+</style>
+</head>
+<body>
+
+<div class="door" aria-hidden="true">
+  <div class="door__light"></div>
+  <div class="door__leaf door__leaf--l"><span class="door__word" data-word="0"></span><i class="door__handle"></i></div>
+  <div class="door__leaf door__leaf--r"><span class="door__word" data-word="1"></span><i class="door__handle"></i></div>
+  <span class="door__rule"></span>
+  <span class="door__tag mono" data-tagline></span>
+</div>
+
+<header class="nav" data-nav>
+  <button class="nav__menu mono" type="button" aria-expanded="false" aria-controls="menu" data-menu-open><i></i><span data-menu-label></span></button>
+  <a class="nav__logo" href="#top" data-logo></a>
+  <a class="nav__cta btn btn--fill" href="#reserver" data-nav-cta></a>
+</header>
+
+<div class="menu" id="menu" data-menu>
+  <button class="menu__close mono" type="button" data-menu-close><i></i><span data-close-label></span></button>
+  <ol data-menu-links></ol>
+  <div class="menu__foot mono" data-menu-foot></div>
+</div>
+
+<main>
+  <section class="hero" id="top">
+    <div class="hero__pin">
+      <div class="hero__media" data-hero-media></div>
+      <div class="hero__content" data-hero-content></div>
+      <form class="book" data-book></form>
+      <div class="book-m" data-book-m></div>
+    </div>
+  </section>
+
+  <section class="intro" id="maison" data-intro></section>
+  <section class="direct" data-direct></section>
+  <section class="uni" id="univers" aria-roledescription="carrousel" data-uni></section>
+  <section class="stays" id="hebergements" data-stays></section>
+  <section class="long" id="longs-sejours" data-long></section>
+  <section class="banner" data-banner></section>
+  <section class="reviews" id="avis" data-reviews></section>
+  <section class="relax" id="detente" data-relax></section>
+  <section class="plan" id="plan" data-plan></section>
+  <section class="offers" id="offres" data-offers></section>
+  <section class="faq" id="faq" data-faq></section>
+  <section class="resa" id="reserver" data-resa></section>
+</main>
+
+<footer class="foot" data-foot></footer>
+
+<a class="wa-float" data-wa-float target="_blank" rel="noopener" aria-label="Réserver sur WhatsApp"></a>
+<div class="demo mono" data-demo></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <clipPath id="waveClip" clipPathUnits="objectBoundingBox"><path data-wave d="M0,0.05 H1 V0.95 H0 Z"/></clipPath>
+</svg>
+
+<script src="content.js"></script>
+<script>
+/* ---------- Remplissage du contenu depuis content.js ---------- */
+(() => {
+  const S = window.SITE;
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  // Typographie française : espaces insécables avant ? ! : ; » et après «, entre un nombre et son unité
+  const t = s => esc(s)
+    .replace(/ ([?!:;»])/g, ' $1')
+    .replace(/« /g, '« ')
+    .replace(/(\d) (?=(m²|h\b|h\/|min\b|j\/|personnes?|mètres|semaines?|avis))/g, '$1 ');
+  const wa = msg => `https://wa.me/${S.whatsapp.number}?text=${encodeURIComponent(msg)}`;
+  const waAttrs = msg => `href="${esc(wa(msg))}" target="_blank" rel="noopener"`;
+  const lines = arr => arr.map(l => `<span class="line"><span>${t(l)}</span></span>`).join('');
+
+  const I = {
+    wa: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>',
+    arrow: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg>',
+    left: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 8H2M7 3 2 8l5 5"/></svg>',
+    check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Z"/><path pathLength="1" d="m7.6 12.3 3 3 5.8-6.3"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5a7 7 0 1 1 14 0C19 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>',
+    star: '<path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.6l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/>'
+  };
+  const feat = {
+    pool: '<svg viewBox="0 0 64 64" aria-hidden="true"><path pathLength="1" d="M8 40c4-3 8-3 12 0s8 3 12 0 8-3 12 0 8 3 12 0M8 50c4-3 8-3 12 0s8 3 12 0 8-3 12 0 8 3 12 0"/><path pathLength="1" d="M22 36V14a5 5 0 0 1 10 0M38 36V14a5 5 0 0 1 10 0M22 22h16M22 30h16"/></svg>',
+    power: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect pathLength="1" x="10" y="20" width="44" height="30" rx="4"/><path pathLength="1" d="M34 26l-8 11h10l-8 11M18 50v5M46 50v5M18 20v-6h10v6"/></svg>',
+    shuttle: '<svg viewBox="0 0 64 64" aria-hidden="true"><path pathLength="1" d="M8 40V24a4 4 0 0 1 4-4h28l10 10h4a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8Z"/><circle pathLength="1" cx="18" cy="44" r="5"/><circle pathLength="1" cx="46" cy="44" r="5"/><path pathLength="1" d="M14 26h10v6H14zM30 26h8l6 6H30z"/></svg>',
+    shield: '<svg viewBox="0 0 64 64" aria-hidden="true"><path pathLength="1" d="M32 8 12 15v15c0 13 9 22 20 26 11-4 20-13 20-26V15Z"/><path pathLength="1" d="m23 32 6 6 12-13"/></svg>'
+  };
+
+  /* Navigation + menu */
+  $('[data-logo]').innerHTML = `${t(S.brand.name).toUpperCase()}<small>${t('Riviera Golf · Abidjan').toUpperCase()}</small>`;
+  $('[data-menu-label]').textContent = S.nav.menuLabel;
+  $('[data-close-label]').textContent = S.nav.closeLabel;
+  $('[data-nav-cta]').textContent = S.nav.cta;
+  $('[data-menu-links]').innerHTML = S.nav.links.map((l, i) => `<li style="--i:${i}"><a href="${esc(l.href)}">${t(l.label)}</a></li>`).join('');
+  $('[data-menu-foot]').innerHTML = `<a ${waAttrs(S.whatsapp.message)}>WhatsApp ${t(S.whatsapp.display)}</a><span>${t(S.brand.place)}</span>`;
+
+  /* Porte */
+  document.querySelectorAll('[data-word]').forEach(el => {
+    el.innerHTML = [...S.brand.words[+el.dataset.word]].map(c => `<span>${esc(c)}</span>`).join('');
+  });
+  $('[data-tagline]').textContent = S.brand.tagline;
+
+  /* Hero */
+  const H = S.hero;
+  const narrow = matchMedia('(max-width: 760px), (max-aspect-ratio: 4/5)').matches;
+  const motion = document.documentElement.classList.contains('motion');
+  const heroSrc = narrow ? H.video.mobile : H.video.desktop;
+  const heroPoster = narrow ? H.poster.mobile : H.poster.desktop;
+  $('[data-hero-media]').innerHTML = motion
+    ? `<video muted playsinline loop autoplay preload="auto" poster="${esc(heroPoster)}" aria-label="${esc(H.alt)}"><source src="${esc(heroSrc)}" type="video/mp4"></video><div class="hero__veil"></div>`
+    : `<img src="${esc(heroPoster)}" alt="${esc(H.alt)}"><div class="hero__veil"></div>`;
+  $('[data-hero-content]').innerHTML = `
+    <p class="hero__kicker mono">${t(H.kicker)}</p>
+    <h1 class="hero__title"><span class="line"><span>${t(H.title[0])}</span></span><span class="line"><span><em>${t(H.title[1])}</em></span></span></h1>`;
+  const B = H.booking;
+  const today = new Date(), iso = d => d.toISOString().slice(0, 10);
+  const plus = n => { const d = new Date(today); d.setDate(d.getDate() + n); return iso(d); };
+  $('[data-book]').innerHTML = `
+    <label><span class="mono">${t(B.arrive)}</span><input type="date" name="in" value="${plus(7)}" min="${iso(today)}"></label>
+    <label><span class="mono">${t(B.leave)}</span><input type="date" name="out" value="${plus(10)}" min="${iso(today)}"></label>
+    <label><span class="mono">${t(B.guests)}</span><select name="g">${B.guestOptions.map((o, i) => `<option${i === 1 ? ' selected' : ''}>${t(o)}</option>`).join('')}</select></label>
+    <button class="btn btn--fill" type="submit">${t(B.submit)}</button>`;
+  $('[data-book-m]').innerHTML = `<a class="btn btn--fill" ${waAttrs(S.whatsapp.message)}>${I.wa}${t(B.mobile)}</a>`;
+  const fr = v => v ? new Date(v + 'T12:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
+  $('[data-book]').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.currentTarget;
+    const msg = `Bonjour ${S.brand.name}, avez-vous des disponibilités du ${fr(f.in.value)} au ${fr(f.out.value)} pour ${f.g.value} ?`;
+    open(wa(msg), '_blank', 'noopener');
+  });
+
+  /* Introduction */
+  const IN = S.intro;
+  $('[data-intro]').innerHTML = `
+    <p class="intro__kicker mono" data-fx="rise">${t(IN.kicker)}</p>
+    <h2 class="intro__title" data-fx="lines">${lines([IN.title])}</h2>
+    <p class="intro__text" data-fx="rise">${t(IN.text)}</p>
+    <p class="intro__motto" data-fx="rise"><em>${t(IN.motto)}</em></p>
+    <ul class="feats">${IN.features.map(f => `<li data-fx="draw">${feat[f.icon]}<span>${t(f.label)}</span></li>`).join('')}</ul>`;
+
+  /* Bandeau direct */
+  const D = S.direct;
+  $('[data-direct]').innerHTML = `
+    <h2 data-fx="lines">${lines([D.title])}</h2>
+    <p data-fx="rise">${t(D.text)}</p>
+    <a class="btn btn--fill" data-fx="rise" ${waAttrs(S.whatsapp.message)}>${I.wa}${t(D.cta)}</a>
+    <ul class="mono" data-fx="rise">${D.guarantees.map(g => `<li>${t(g)}</li>`).join('')}</ul>`;
+
+  /* Univers */
+  const U = S.universes;
+  $('[data-uni]').innerHTML = `
+    ${U.map((u, i) => `
+    <article class="uni__slide${i === 0 ? ' is-on' : ''}" aria-roledescription="diapositive" aria-label="${i + 1} sur ${U.length} : ${esc(u.title)}"${i ? ' aria-hidden="true"' : ''}>
+      <img src="${esc(u.img)}" alt="${esc(u.alt)}"${i ? ' loading="lazy"' : ''}>
+      <div class="uni__body">
+        <p class="uni__kicker mono">${t(u.kicker)}</p>
+        <h2 class="uni__title">${t(u.title)}</h2>
+        <p class="uni__sub">${t(u.sub)}</p>
+        <p class="uni__text">${t(u.text)}</p>
+        <div class="uni__btns">
+          <a class="btn btn--fill" ${waAttrs(`Bonjour ${S.brand.name}, je souhaite : ${u.primary.toLowerCase()}.`)}${i ? ' tabindex="-1"' : ''}>${t(u.primary)}</a>
+          <a class="btn btn--line" href="${esc(u.secondary.href)}"${i ? ' tabindex="-1"' : ''}>${t(u.secondary.label)}</a>
+        </div>
+      </div>
+    </article>`).join('')}
+    <div class="uni__ui">
+      <button class="uni__arrow" type="button" data-uni-prev aria-label="Univers précédent">${I.left}</button>
+      <div class="uni__tabs" role="tablist">${U.map((u, i) => `<button type="button" data-uni-go="${i}" aria-current="${i === 0}">${t(u.title)}</button>`).join('')}</div>
+      <div class="uni__count mono"><span data-uni-n>1 / ${U.length}</span><span class="uni__bar"><i data-uni-bar></i></span></div>
+      <button class="uni__arrow" type="button" data-uni-next aria-label="Univers suivant">${I.arrow}</button>
+    </div>`;
+
+  /* Hébergements */
+  const ST = S.stays;
+  $('[data-stays]').innerHTML = `
+    <div class="stays__head">
+      <div><p class="cap" data-fx="rise">${t(ST.caption)}</p><h2 class="h2" data-fx="lines">${lines([ST.title])}</h2></div>
+      <p class="lead" data-fx="rise">${t(ST.lead)}</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrer les hébergements">${ST.filters.map((f, i) => `<button class="chip" type="button" data-filter="${esc(f.key)}" aria-pressed="${i === 0}">${t(f.label)}</button>`).join('')}</div>
+    <div class="masonry" data-masonry></div>`;
+  const cards = ST.items.map(it => {
+    const msg = `Bonjour ${S.brand.name}, je souhaite réserver : ${it.name} (${it.guests}).`;
+    const el = document.createElement('article');
+    el.className = 'stay';
+    el.dataset.cat = it.cat;
+    el.innerHTML = `
+      <div class="stay__media" style="aspect-ratio:${esc(it.ratio)}">
+        <img src="${esc(it.img)}" alt="${esc(it.alt)}" loading="lazy">
+        <span class="stay__tag mono">${t(ST.catLabels[it.cat])}</span>
+        ${it.badge ? `<span class="stay__tag stay__tag--sig mono">${t(it.badge)}</span>` : ''}
+        <a class="stay__book" ${waAttrs(msg)}>${t(ST.bookLabel)} ${I.arrow}</a>
+      </div>
+      <div class="stay__info">
+        <span class="stay__meta mono">${t(it.size)} · ${t(it.guests)}</span>
+        <h3 class="stay__name">${t(it.name)}</h3>
+        <ul class="stay__specs">${it.specs.map(s => `<li>${t(s)}</li>`).join('')}</ul>
+        <span class="stay__price mono">${t(ST.priceLabel)}</span><br>
+        <a class="stay__m" ${waAttrs(msg)}>${t(ST.bookLabel)} ${I.arrow}</a>
+      </div>`;
+    return el;
+  });
+  const masonry = $('[data-masonry]');
+  let filter = 'all';
+  const layout = () => {
+    const n = innerWidth > 1000 ? 3 : 2;
+    const cols = Array.from({ length: n }, () => { const c = document.createElement('div'); c.className = 'masonry__col'; return c; });
+    // répartition équilibrée : chaque carte va dans la colonne la plus courte (en ratio cumulé)
+    const h = new Array(n).fill(0);
+    cards.filter(c => filter === 'all' || c.dataset.cat === filter).forEach(c => {
+      const [w, hh] = c.querySelector('.stay__media').style.aspectRatio.split('/').map(Number);
+      const k = h.indexOf(Math.min(...h));
+      cols[k].appendChild(c);
+      h[k] += hh / w + .45;
+    });
+    masonry.replaceChildren(...cols);
+    masonry.dataset.cols = n;
+    document.dispatchEvent(new Event('masonry:layout'));
+  };
+  layout();
+  let lastCols = masonry.dataset.cols;
+  addEventListener('resize', () => { const n = innerWidth > 1000 ? '3' : '2'; if (n !== lastCols) { lastCols = n; layout(); } });
+  document.querySelectorAll('[data-filter]').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.filter;
+    document.querySelectorAll('[data-filter]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    layout();
+  }));
+
+  /* Longs séjours */
+  const L = S.longStay;
+  $('[data-long]').innerHTML = `
+    <div class="long__photo" data-fx="reveal"><img src="${esc(L.img)}" alt="${esc(L.alt)}" loading="lazy"></div>
+    <div class="long__text">
+      <p class="cap" data-fx="rise">${t(L.caption)}</p>
+      <h2 class="h2" data-fx="lines">${lines(L.title)}</h2>
+      <p data-fx="rise">${t(L.text)}</p>
+      <ul class="checks">${L.list.map(x => `<li data-fx="check">${I.check}<span>${t(x)}</span></li>`).join('')}</ul>
+      <a class="btn btn--fill" data-fx="rise" ${waAttrs(`Bonjour ${S.brand.name}, je souhaite un devis pour un long séjour en appartement meublé.`)}>${I.wa}${t(L.cta)}</a>
+    </div>`;
+
+  /* Bannière */
+  $('[data-banner]').innerHTML = `<img src="${esc(S.banner.img)}" alt="${esc(S.banner.alt)}" loading="lazy"><blockquote>${t(S.banner.quote).split(' ').map(w => `<span class="w">${w}</span>`).join(' ')}</blockquote>`;
+
+  /* Avis */
+  const R = S.reviews;
+  const starsSvg = `<svg viewBox="0 0 140 24" aria-hidden="true">${[0, 1, 2, 3, 4].map(i => `<g transform="translate(${i * 29},0)">${I.star}</g>`).join('')}</svg>`;
+  $('[data-reviews]').innerHTML = `
+    <div class="score">
+      <p class="cap" data-fx="rise">${t(R.caption)}</p>
+      <h2 class="h2" data-fx="lines" style="font-size:clamp(32px,3.6vw,52px)">${lines([R.title])}</h2>
+      <div class="score__num"><span data-count="${esc(R.score)}">${t(R.score)}</span><small>${t(R.scoreMax)}</small></div>
+      <span class="stars" role="img" aria-label="${esc(R.score)} sur 5">
+        <span style="color:rgba(169,231,245,.22);fill:currentColor">${starsSvg}</span>
+        <span class="stars__fill" style="color:var(--cyan);fill:currentColor" data-stars>${starsSvg}</span>
+      </span>
+      <p>${t(R.scoreText)}</p>
+    </div>
+    <div class="reviews__grid">${R.items.map(r => `
+      <blockquote class="review" data-fx="card"><p class="review__q">${t(r.text)}</p><footer><b>${t(r.author)}</b><span class="mono">${t(r.meta)}</span></footer></blockquote>`).join('')}
+    </div>`;
+
+  /* Se détendre */
+  const RX = S.relax;
+  $('[data-relax]').innerHTML = `
+    <div class="relax__wave" data-wave-box>
+      ${motion ? `<video muted playsinline loop autoplay preload="metadata" poster="${esc(RX.poster)}"><source src="${esc(RX.video)}" type="video/mp4"></video>` : `<img src="${esc(RX.poster)}" alt="" loading="lazy">`}
+      <div class="relax__txt">
+        <p class="cap" data-fx="rise">${t(RX.kicker)}</p>
+        <h2 data-fx="lines">${lines([RX.title])}</h2>
+        <p data-fx="rise">${t(RX.text)}</p>
+        <a class="btn btn--fill" data-fx="rise" ${waAttrs(`Bonjour ${S.brand.name}, je souhaite réserver un moment au spa.`)}>${t(RX.cta)}</a>
+      </div>
+    </div>`;
+
+  /* Plan */
+  const P = S.plan;
+  const num = id => P.zones.findIndex(z => z.id === id) + 1;
+  const pinAt = (id, x, y) => `<g class="pin" data-zone="${id}" transform="translate(${x},${y})"><circle r="15"/><text>${num(id)}</text></g>`;
+  const trees = [[90, 420], [130, 470], [95, 520], [170, 545], [410, 120], [600, 600], [940, 300], [960, 360], [925, 420], [205, 400], [470, 610], [560, 108], [380, 560]];
+  $('[data-plan]').innerHTML = `
+    <div class="plan__head">
+      <div><p class="cap" data-fx="rise">${t(P.caption)}</p><h2 class="h2" data-fx="lines">${lines([P.title])}</h2></div>
+      <p class="lead" data-fx="rise">${t(P.lead)}</p>
+    </div>
+    <div class="plan__body">
+      <ol class="legend">${P.zones.map((z, i) => `<li><button type="button" data-zone="${z.id}"><i>${i + 1}</i>${t(z.label)}</button></li>`).join('')}</ol>
+      <div class="map">
+        <svg viewBox="0 0 1000 660" role="img" aria-label="Plan illustré du domaine de Maison Ondine">
+          <path class="d" pathLength="1" d="M60 40H940a30 30 0 0 1 30 30V600a30 30 0 0 1-30 30H340M260 630H60a30 30 0 0 1-30-30V70a30 30 0 0 1 30-30Z"/>
+          <path class="walk" d="M300 630V520q0-40 40-40h120q40 0 40-40v-30M500 410h150M330 480V440"/>
+          ${trees.map(([x, y], i) => `<circle class="tree d" pathLength="1" cx="${x}" cy="${y}" r="${14 + (i % 3) * 5}"/>`).join('')}
+          <path class="z" data-zone="entree" pathLength="1" d="M262 612h76v36h-76Z"/>
+          <path class="z" data-zone="reception" pathLength="1" d="M270 400h120v70H270Z"/>
+          <path class="z" data-zone="hotel" pathLength="1" d="M70 80h330v110H220v170H70Z"/>
+          <path class="d" pathLength="1" d="M125 80v110M180 80v110M235 80v110M290 80v110M345 80v110M70 245h150M70 300h150"/>
+          <path class="z" data-zone="restaurant" pathLength="1" d="M450 80h170v80H450Z"/>
+          <path class="d" pathLength="1" d="M465 175h140M480 190h110"/>
+          <path class="z z--water" data-zone="piscine" pathLength="1" d="M440 250c0-28 22-50 50-50h120c40 0 70 30 70 70s-30 66-70 66H500c-34 0-60-30-60-60Z"/>
+          <path class="d" pathLength="1" d="M470 360h30M520 360h30M570 360h30M620 360h30"/>
+          <path class="z" data-zone="residence" pathLength="1" d="M680 80h270v150H870v170H780V230H680Z"/>
+          <path class="d" pathLength="1" d="M747 80v150M814 80v150M870 290h80M870 345h80"/>
+          <path class="z" data-zone="spa" pathLength="1" d="M720 280h50v120h-50Z"/>
+          <path class="z" data-zone="reunion" pathLength="1" d="M520 430h130v70H520Z"/>
+          <path class="z" data-zone="parking" pathLength="1" d="M690 460h260v130H690Z"/>
+          <path class="d" pathLength="1" d="M732 460v130M774 460v130M816 460v130M858 460v130M900 460v130"/>
+          <text class="lbl" x="300" y="655" text-anchor="middle">${esc('ENTRÉE')}</text>
+          ${pinAt('entree', 300, 592)}${pinAt('reception', 330, 435)}${pinAt('hotel', 145, 135)}${pinAt('restaurant', 535, 120)}${pinAt('piscine', 560, 268)}${pinAt('residence', 815, 155)}${pinAt('spa', 745, 340)}${pinAt('reunion', 585, 465)}${pinAt('parking', 820, 525)}
+        </svg>
+      </div>
+    </div>
+    <div class="near">
+      <h3 class="mono">${t(P.nearTitle)}</h3>
+      ${P.near.map(n => `<div data-fx="rise"><b>${t(n.time)}</b><span>${t(n.label)}</span></div>`).join('')}
+    </div>`;
+  const planEl = $('[data-plan]');
+  const setZone = id => planEl.querySelectorAll('[data-zone]').forEach(el => el.classList.toggle('is-on', el.dataset.zone === id));
+  planEl.querySelectorAll('[data-zone]').forEach(el => {
+    el.addEventListener('mouseenter', () => setZone(el.dataset.zone));
+    el.addEventListener('focus', () => setZone(el.dataset.zone));
+    el.addEventListener('click', () => setZone(el.dataset.zone));
+  });
+  planEl.querySelector('.plan__body').addEventListener('mouseleave', () => setZone(null));
+
+  /* Offres */
+  const O = S.offers;
+  $('[data-offers]').innerHTML = `
+    <div class="offers__head">
+      <div><p class="cap" data-fx="rise">${t(O.caption)}</p><h2 class="h2" data-fx="lines">${lines([O.title])}</h2></div>
+      <p class="lead" data-fx="rise">${t(O.lead)}</p>
+    </div>
+    <div class="offers__pin"><div class="offers__track" data-track>${O.items.map(o => `
+      <article class="offer">
+        <div class="offer__media"><img src="${esc(o.img)}" alt="${esc(o.alt)}" loading="lazy"><span class="mono">${t(o.kicker)}</span></div>
+        <h3>${t(o.title)}</h3>
+        <p>${t(o.text)}</p>
+        <div class="offer__foot"><span class="mono">${t(O.conditions)}</span><a ${waAttrs(`Bonjour ${S.brand.name}, je suis intéressé(e) par l’offre « ${o.title} ».`)}>${t(O.cta)} ${I.arrow}</a></div>
+      </article>`).join('')}
+    </div></div>`;
+
+  /* FAQ */
+  const F = S.faq;
+  $('[data-faq]').innerHTML = `
+    <div><p class="cap" data-fx="rise">${t(F.caption)}</p><h2 class="h2" data-fx="lines">${lines([F.title])}</h2></div>
+    <div class="faq__list">${F.items.map((x, i) => `
+      <div class="qa">
+        <button type="button" aria-expanded="${i === 0}" aria-controls="qa-${i}" id="qb-${i}">${t(x.q)}<i aria-hidden="true"></i></button>
+        <div class="qa__a" id="qa-${i}" role="region" aria-labelledby="qb-${i}"><div><p>${t(x.a)}</p></div></div>
+      </div>`).join('')}
+    </div>`;
+  document.querySelectorAll('.qa button').forEach(b => b.addEventListener('click', () => {
+    const open = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', !open);
+  }));
+
+  /* Réserver */
+  const BK = S.booking;
+  $('[data-resa]').innerHTML = `
+    <div class="resa__bg">${motion ? `<video muted playsinline loop autoplay preload="metadata" poster="${esc(BK.poster)}"><source src="${esc(BK.video)}" type="video/mp4"></video>` : `<img src="${esc(BK.poster)}" alt="" loading="lazy">`}</div>
+    <div class="resa__intro">
+      <p class="cap" data-fx="rise">${t(BK.caption)}</p>
+      <h2 class="h2" data-fx="lines">${lines(BK.title)}</h2>
+      <p data-fx="rise">${t(BK.text)}</p>
+      <ul class="resa__contact" data-fx="rise">
+        <li>${I.wa}<a ${waAttrs(S.whatsapp.message)}>WhatsApp ${t(S.whatsapp.display)}</a></li>
+        <li>${I.pin}<span>${t(S.brand.address)}</span></li>
+        <li>${I.clock}<span>${t(S.brand.hours)}</span></li>
+        <li>${I.mail}<a href="mailto:${esc(S.brand.email)}">${t(S.brand.email)}</a></li>
+      </ul>
+    </div>
+    <form class="form" data-resa-form>
+      <fieldset class="full" data-fx="field"><legend>${t(BK.typeLabel)}</legend>
+        <div class="seg">${BK.types.map((x, i) => `<label><input type="radio" name="type" value="${esc(x)}"${i === 0 ? ' checked' : ''}><span>${t(x)}</span></label>`).join('')}</div>
+      </fieldset>
+      <label data-fx="field"><span>${t(BK.arrive)}</span><input class="field" type="date" name="in" value="${plus(7)}" min="${iso(today)}" required></label>
+      <label data-fx="field"><span>${t(BK.leave)}</span><input class="field" type="date" name="out" value="${plus(10)}" min="${iso(today)}" required></label>
+      <label class="full" data-fx="field"><span>${t(BK.guests)}</span><select class="field" name="g">${BK.guestOptions.map((o, i) => `<option${i === 1 ? ' selected' : ''}>${t(o)}</option>`).join('')}</select></label>
+      <label class="full" data-fx="field"><span>${t(BK.nameLabel)}</span><input class="field" type="text" name="name" placeholder="${esc(BK.namePlaceholder)}" autocomplete="name"></label>
+      <button class="btn btn--fill full" type="submit" data-fx="field">${I.wa}${t(BK.submit)}</button>
+    </form>`;
+  $('[data-resa-form]').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.currentTarget;
+    const who = f.name.value.trim();
+    const msg = `Bonjour ${S.brand.name}${who ? `, je suis ${who}` : ''}. Je souhaite réserver ${f.type.value.toLowerCase()} du ${fr(f.in.value)} au ${fr(f.out.value)} pour ${f.g.value}. Merci de me confirmer les disponibilités et le tarif.`;
+    open(wa(msg), '_blank', 'noopener');
+  });
+
+  /* Footer */
+  const FT = S.footer;
+  const word = S.brand.name.toUpperCase();
+  $('[data-foot]').innerHTML = `
+    <p class="foot__lead" data-fx="rise">${t(FT.lead)}</p>
+    <div class="foot__grid">
+      <div><p class="cap">${t(FT.discover)}</p><nav class="foot__big">${FT.big.map(b => `<a href="#univers" data-slide="${b.slide}">${t(b.label)}</a>`).join('')}</nav></div>
+      <div class="foot__groups">${FT.groups.map((g, i) => `
+        <details class="fg"${i === 0 ? ' open' : ''}><summary class="mono">${t(g.title)}</summary><ul>${g.links.map(([l, h]) => `<li><a href="${esc(h)}">${t(l)}</a></li>`).join('')}</ul></details>`).join('')}
+      </div>
+    </div>
+    <div class="foot__word" aria-hidden="true">${[...word].map((c, i) => c === ' ' ? ' ' : `<span${i >= word.indexOf(' ') + 1 ? ' class="c"' : ''}>${esc(c)}</span>`).join('')}</div>
+    <div class="foot__bottom mono">
+      <span>${t(FT.copyright)}</span>
+      <span>${t(FT.demo)}</span>
+      <span>${t(FT.credits)}</span>
+      <nav>${FT.socials.map(([l, h]) => `<a href="${esc(h)}">${t(l)}</a>`).join('')}</nav>
+    </div>`;
+
+  /* Flottants */
+  const fl = $('[data-wa-float]');
+  fl.href = wa(S.whatsapp.message);
+  fl.innerHTML = I.wa;
+  $('[data-demo]').textContent = S.demoBadge;
+
+  /* Menu */
+  const menu = $('[data-menu]'), openBtn = $('[data-menu-open]');
+  const setMenu = on => { menu.classList.toggle('is-open', on); openBtn.setAttribute('aria-expanded', on); if (on) menu.querySelector('a').focus({ preventScroll: true }); };
+  openBtn.addEventListener('click', () => setMenu(true));
+  $('[data-menu-close]').addEventListener('click', () => setMenu(false));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  /* Carrousel des univers (fonctionne aussi sans GSAP) */
+  const uni = $('[data-uni]');
+  const slides = [...uni.querySelectorAll('.uni__slide')];
+  let cur = 0, timer = null, inView = false;
+  const DUR = 6500;
+  window.__uni = {
+    go(i, instant) {
+      i = (i + slides.length) % slides.length;
+      if (i === cur && !instant) return;
+      const prev = slides[cur], next = slides[i];
+      cur = i;
+      slides.forEach((s, k) => {
+        const on = k === i;
+        s.setAttribute('aria-hidden', !on);
+        s.querySelectorAll('a').forEach(a => on ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1'));
+      });
+      uni.querySelectorAll('[data-uni-go]').forEach((b, k) => b.setAttribute('aria-current', k === i));
+      uni.querySelector('[data-uni-n]').textContent = `${i + 1} / ${slides.length}`;
+      if (window.__uniAnim && !instant) window.__uniAnim(prev, next);
+      else { slides.forEach(s => s.classList.toggle('is-on', s === next)); }
+      restart();
+    },
+    get cur() { return cur; }
+  };
+  const bar = uni.querySelector('[data-uni-bar]');
+  const restart = () => {
+    clearTimeout(timer);
+    bar.style.transition = 'none'; bar.style.transform = 'scaleX(0)';
+    if (!motion || !inView) return;
+    requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.transition = `transform ${DUR}ms linear`; bar.style.transform = 'scaleX(1)'; }));
+    timer = setTimeout(() => window.__uni.go(cur + 1), DUR);
+  };
+  new IntersectionObserver(([e]) => { inView = e.isIntersecting; restart(); }, { threshold: .4 }).observe(uni);
+  uni.querySelector('[data-uni-prev]').addEventListener('click', () => window.__uni.go(cur - 1));
+  uni.querySelector('[data-uni-next]').addEventListener('click', () => window.__uni.go(cur + 1));
+  uni.querySelectorAll('[data-uni-go]').forEach(b => b.addEventListener('click', () => window.__uni.go(+b.dataset.uniGo)));
+  let sx = null;
+  uni.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') sx = e.clientX; });
+  uni.addEventListener('pointerup', e => { if (sx == null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 50) window.__uni.go(cur + (dx < 0 ? 1 : -1)); });
+  document.querySelectorAll('[data-slide]').forEach(a => a.addEventListener('click', () => window.__uni.go(+a.dataset.slide, true)));
+
+  /* Bouton WhatsApp flottant après le hero ; nav opaque hors du hero ;
+     nav qui sort vers le haut quand on descend et revient quand on remonte */
+  const nav = $('[data-nav]');
+  let lastY = scrollY;
+  const onScroll = () => {
+    const y = scrollY, d = y - lastY, hh = innerHeight * .6;
+    nav.classList.toggle('is-solid', y > innerHeight * 1.2);
+    fl.classList.toggle('is-on', y > hh);
+    const keep = y < innerHeight * .5 || menu.classList.contains('is-open') || nav.contains(document.activeElement);
+    if (keep || d < -4) nav.classList.remove('is-hidden');
+    else if (d > 4) nav.classList.add('is-hidden');
+    lastY = y;
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+<script>
+/* ---------- Animations ---------- */
+(() => {
+  const root = document.documentElement;
+  const door = document.querySelector('.door');
+  if (!window.gsap || !window.ScrollTrigger || !root.classList.contains('motion')) {
+    root.classList.remove('motion');
+    door.classList.add('is-done');
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+  const q = s => document.querySelector(s);
+  const qa = (s, r = document) => [...r.querySelectorAll(s)];
+  const mobile = () => innerWidth <= 860;
+
+  /* Défilement fluide (bloqué pendant l'ouverture de la porte) */
+  let lenis = null;
+  if (window.Lenis) {
+    lenis = window.lenis = new Lenis({ lerp: 0.085 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+  }
+  root.style.overflow = 'hidden';
+  scrollTo(0, 0);
+
+  /* ===== Moment signature : la porte s'ouvre sur la piscine ===== */
+  const leafL = q('.door__leaf--l'), leafR = q('.door__leaf--r');
+  const chars = qa('.door__word span');
+  gsap.set('.hero__title .line > span', { yPercent: 115 });
+  gsap.set('.hero__kicker', { y: 16, opacity: 0 });
+  gsap.set('.nav', { y: -24, opacity: 0 });
+  gsap.set(['.book', '.book-m'], { y: 30, opacity: 0 });
+  gsap.set('.hero__media video, .hero__media img', { scale: 1.16 });
+  gsap.set(chars, { yPercent: 105, opacity: 0 });
+  gsap.set(['.door__handle', '.door__tag'], { opacity: 0 });
+
+  const finish = () => {
+    window.__doorDoneAt = performance.now(); // repère pour les scripts de capture
+    door.classList.add('is-done');
+    root.style.overflow = '';
+    lenis?.start();
+    ScrollTrigger.refresh();
+  };
+  const tl = gsap.timeline({ paused: true, onComplete: finish });
+  tl.to(chars, { yPercent: 0, opacity: 1, duration: .75, stagger: .045, ease: 'expo.out' }, 0)
+    .to('.door__rule', { scaleX: 1, duration: .8, ease: 'expo.inOut' }, .35)
+    .to('.door__tag', { opacity: 1, duration: .5 }, .6)
+    .to('.door__handle', { opacity: 1, duration: .5 }, .55)
+    .addLabel('open', 1.15)
+    .to(['.door__rule', '.door__tag'], { opacity: 0, duration: .3 }, 'open')
+    .to('.door__light', { opacity: 1, duration: .25 }, 'open')
+    .to('.door__light', { width: '60vw', opacity: 0, duration: 1.1, ease: 'power2.in' }, 'open+=.15')
+    .to(leafL, { rotateY: 88, duration: 1.45, ease: 'power3.inOut' }, 'open+=.08')
+    .to(leafR, { rotateY: -88, duration: 1.45, ease: 'power3.inOut' }, 'open+=.08')
+    .to([leafL, leafR], { filter: 'brightness(.45)', duration: 1.2, ease: 'power2.in' }, 'open+=.2')
+    .to([leafL, leafR], { opacity: 0, duration: .45, ease: 'power1.in' }, 'open+=1.05')
+    .to('.hero__media video, .hero__media img', { scale: 1, duration: 2.2, ease: 'expo.out' }, 'open+=.35')
+    .to('.hero__kicker', { y: 0, opacity: 1, duration: .9, ease: 'expo.out' }, 'open+=.9')
+    .to('.hero__title .line > span', { yPercent: 0, duration: 1.3, stagger: .12, ease: 'expo.out' }, 'open+=.95')
+    .to('.nav', { y: 0, opacity: 1, duration: .9, ease: 'expo.out', clearProps: 'transform,opacity' }, 'open+=1.15')
+    .to(['.book', '.book-m'], { y: 0, opacity: 1, duration: .9, ease: 'expo.out' }, 'open+=1.25');
+  const skip = () => { if (tl.time() < tl.labels.open) tl.seek(tl.labels.open + .001); tl.timeScale(1.6); tl.play(); };
+  door.addEventListener('click', skip);
+  addEventListener('wheel', skip, { passive: true, once: true });
+  addEventListener('touchstart', skip, { passive: true, once: true });
+  // Le nom s'écrit dès que la police est là ; seule l'ouverture attend la vidéo (2 s max).
+  const v = q('.hero__media video');
+  const videoReady = Promise.race([
+    !v || v.readyState >= 2 ? 0 : new Promise(r => v.addEventListener('loadeddata', r, { once: true })),
+    new Promise(r => setTimeout(r, 1200))
+  ]);
+  tl.addPause('open', () => videoReady.then(() => tl.play()));
+  Promise.race([document.fonts ? document.fonts.ready : 0, new Promise(r => setTimeout(r, 700))])
+    .then(() => requestAnimationFrame(() => tl.play()));
+
+  /* ===== Hero au scroll : la vidéo se resserre en carte portrait (effet de la référence) ===== */
+  const card = () => {
+    const W = innerWidth, Hh = innerHeight, m = mobile();
+    const cw = m ? W * 0.74 : Math.min(W * 0.3, 460), ch = m ? Hh * 0.5 : Hh * 0.6, top = m ? Hh * 0.15 : Hh * 0.13;
+    return `inset(${top}px ${(W - cw) / 2}px ${Hh - top - ch}px ${(W - cw) / 2}px round 14px)`;
+  };
+  gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom bottom', scrub: .6, invalidateOnRefresh: true } })
+    .to('.hero__content', { yPercent: -60, opacity: 0, duration: .22 }, 0)
+    .to(['.book', '.book-m'], { y: 40, opacity: 0, duration: .15 }, 0)
+    .fromTo('.hero__media', { clipPath: 'inset(0px 0px 0px 0px round 0px)' }, { clipPath: card, duration: .7, ease: 'power1.inOut' }, .08)
+    .to('.hero__veil', { opacity: .25, duration: .5 }, .2)
+    .to({}, { duration: .22 });
+
+  /* ===== Effets génériques ===== */
+  const once = (el, anim, start = 'top 86%') => ScrollTrigger.create({ trigger: el, start, once: true, animation: anim });
+  qa('[data-fx="lines"]').forEach(el => {
+    const s = qa('.line > span', el);
+    gsap.set(s, { yPercent: 112 });
+    once(el, gsap.to(s, { yPercent: 0, duration: 1.2, stagger: .1, ease: 'expo.out', paused: true }));
+  });
+  qa('[data-fx="rise"]').forEach(el => {
+    gsap.set(el, { y: 34, opacity: 0 });
+    once(el, gsap.to(el, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', paused: true }), 'top 92%');
+  });
+  qa('[data-fx="draw"]').forEach((el, i) => {
+    const p = qa('path, rect, circle', el);
+    gsap.set(p, { strokeDasharray: 1, strokeDashoffset: 1 });
+    gsap.set(el.querySelector('span'), { opacity: 0, y: 12 });
+    const a = gsap.timeline({ paused: true, delay: i * .12 })
+      .to(p, { strokeDashoffset: 0, duration: 1.4, stagger: .12, ease: 'power2.inOut' })
+      .to(el.querySelector('span'), { opacity: 1, y: 0, duration: .8, ease: 'expo.out' }, .5);
+    once(el, a, 'top 90%');
+  });
+  qa('[data-fx="check"]').forEach((el, i) => {
+    const p = qa('path', el);
+    gsap.set(p, { strokeDasharray: 1, strokeDashoffset: 1 });
+    gsap.set(el.querySelector('span'), { opacity: 0, x: -10 });
+    once(el, gsap.timeline({ paused: true, delay: (i % 6) * .08 })
+      .to(p, { strokeDashoffset: 0, duration: .9, stagger: .25, ease: 'power2.out' })
+      .to(el.querySelector('span'), { opacity: 1, x: 0, duration: .7, ease: 'expo.out' }, .15), 'top 94%');
+  });
+  qa('[data-fx="reveal"]').forEach(el => {
+    gsap.set(el, { clipPath: 'inset(100% 0% 0% 0%)' });
+    gsap.set(el.querySelector('img'), { scale: 1.25 });
+    once(el, gsap.timeline({ paused: true })
+      .to(el, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'expo.inOut' })
+      .to(el.querySelector('img'), { scale: 1, duration: 1.9, ease: 'expo.out' }, .2));
+  });
+  qa('[data-fx="card"]').forEach((el, i) => {
+    gsap.set(el, { y: 70, opacity: 0 });
+    once(el, gsap.to(el, { y: 0, opacity: 1, duration: 1.2, delay: (i % 2) * .12, ease: 'expo.out', paused: true }), 'top 92%');
+  });
+  qa('[data-fx="field"]').forEach((el, i) => {
+    gsap.set(el, { y: 24, opacity: 0 });
+    once(el, gsap.to(el, { y: 0, opacity: 1, duration: .9, delay: i * .07, ease: 'expo.out', paused: true }), 'top 92%');
+  });
+
+  /* ===== Univers : fondu croisé + zoom lent ===== */
+  const kb = img => gsap.fromTo(img, { scale: 1.14 }, { scale: 1, duration: 8, ease: 'power1.out', overwrite: true });
+  window.__uniAnim = (prev, next) => {
+    next.classList.add('is-on');
+    gsap.set(next, { zIndex: 2, opacity: 0, visibility: 'visible' });
+    gsap.set(prev, { zIndex: 1 });
+    kb(next.querySelector('img'));
+    gsap.to(next, { opacity: 1, duration: 1.1, ease: 'power2.inOut', onComplete: () => { prev.classList.remove('is-on'); gsap.set(prev, { clearProps: 'opacity,visibility,zIndex' }); gsap.set(next, { clearProps: 'zIndex' }); } });
+    gsap.fromTo(qa('.uni__kicker, .uni__title, .uni__sub, .uni__text, .uni__btns', next), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: .07, ease: 'expo.out', delay: .25 });
+  };
+  const firstSlide = q('.uni__slide.is-on');
+  ScrollTrigger.create({ trigger: '.uni', start: 'top 70%', once: true, onEnter: () => {
+    kb(firstSlide.querySelector('img'));
+    gsap.fromTo(qa('.uni__kicker, .uni__title, .uni__sub, .uni__text, .uni__btns', firstSlide), { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .08, ease: 'expo.out' });
+  } });
+  gsap.set(qa('.uni__kicker, .uni__title, .uni__sub, .uni__text, .uni__btns', firstSlide), { opacity: 0 });
+
+  /* ===== Masonry : cascade + parallaxe par colonne ===== */
+  let mTriggers = [];
+  const setupMasonry = () => {
+    mTriggers.forEach(t => t.kill()); mTriggers = [];
+    const cols = qa('.masonry__col');
+    cols.forEach((c, i) => {
+      gsap.set(c, { y: 0 });
+      qa('.stay', c).forEach((card, k) => {
+        if (card.dataset.shown) return;
+        gsap.set(card, { y: 90, opacity: 0, rotate: (i % 2 ? 1 : -1) * 2.5 });
+        mTriggers.push(ScrollTrigger.create({ trigger: card, start: 'top 94%', once: true, onEnter: () => { card.dataset.shown = 1; gsap.to(card, { y: 0, opacity: 1, rotate: 0, duration: 1.3, delay: i * .08, ease: 'expo.out' }); } }));
+      });
+      if (cols.length === 3 && i !== 1 || cols.length === 2 && i === 1) {
+        const amp = cols.length === 3 ? (i === 0 ? 50 : -70) : -40;
+        mTriggers.push(ScrollTrigger.create({ trigger: '.masonry', start: 'top bottom', end: 'bottom top', scrub: .8, animation: gsap.fromTo(c, { y: -amp }, { y: amp, ease: 'none' }) }));
+      }
+    });
+    ScrollTrigger.refresh();
+  };
+  setupMasonry();
+  document.addEventListener('masonry:layout', () => { qa('.stay').forEach(s => { gsap.set(s, { clearProps: 'transform,opacity' }); s.dataset.shown = 1; }); setupMasonry(); });
+
+  /* ===== Bannière : parallaxe et mots qui s'allument ===== */
+  gsap.fromTo('.banner img', { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.banner', start: 'top bottom', end: 'bottom top', scrub: true } });
+  const words = qa('.banner .w');
+  gsap.set(words, { opacity: .14 });
+  gsap.to(words, { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: '.banner', start: 'top 65%', end: 'center 45%', scrub: .5 } });
+
+  /* ===== Avis : compteur et étoiles ===== */
+  const cnt = q('[data-count]'), stars = q('[data-stars]');
+  if (cnt) {
+    const end = parseFloat(cnt.dataset.count.replace(',', '.')), o = { v: 0 };
+    gsap.set(stars, { width: '0%' });
+    once(cnt, gsap.timeline({ paused: true })
+      .to(o, { v: end, duration: 1.8, ease: 'power3.out', onUpdate: () => { cnt.textContent = o.v.toFixed(1).replace('.', ','); } })
+      .to(stars, { width: (end / 5 * 100) + '%', duration: 1.8, ease: 'power3.out' }, 0));
+  }
+
+  /* ===== Vague : le bord de la vidéo ondule (temps + scroll) ===== */
+  const wave = q('[data-wave]'), box = q('[data-wave-box]');
+  if (wave && box) {
+    let sp = 0;
+    ScrollTrigger.create({ trigger: box, start: 'top bottom', end: 'bottom top', onUpdate: s => { sp = s.progress; } });
+    const N = 48;
+    const edge = (ph, base, amp, f, rev) => {
+      const pts = [];
+      for (let i = 0; i <= N; i++) { const x = i / N; pts.push([x, base + amp * Math.sin((x * f + ph) * Math.PI * 2)]); }
+      if (rev) pts.reverse();
+      return pts.map(([x, y]) => `${x.toFixed(4)},${y.toFixed(4)}`).join(' L');
+    };
+    let visible = false;
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(box);
+    gsap.ticker.add(time => {
+      if (!visible) return;
+      const ph = time * .06 + sp * 1.4, amp = mobile() ? .018 : .028;
+      wave.setAttribute('d', `M${edge(ph, .045, amp, 1.15)} L${edge(-ph + .3, .955, amp, 1.05, true)} Z`);
+    });
+    gsap.fromTo(box, { scale: .9 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: box, start: 'top bottom', end: 'top 30%', scrub: true } });
+  }
+
+  /* ===== Plan : les bâtiments se dessinent ===== */
+  const plan = q('.map svg');
+  if (plan) {
+    const strokes = qa('.d, .z', plan);
+    gsap.set(strokes, { strokeDasharray: 1, strokeDashoffset: 1 });
+    gsap.set(qa('.z', plan), { fillOpacity: 0 });
+    gsap.set(qa('.pin, .lbl', plan), { opacity: 0, scale: .4, transformOrigin: '50% 50%' });
+    gsap.set(qa('.walk', plan), { opacity: 0 });
+    once(plan, gsap.timeline({ paused: true, onComplete: () => gsap.set(strokes, { clearProps: 'strokeDasharray,strokeDashoffset' }) })
+      .to(strokes, { strokeDashoffset: 0, duration: 1.8, stagger: .035, ease: 'power2.inOut' })
+      .to(qa('.z', plan), { fillOpacity: 1, duration: .8, stagger: .05 }, 1.1)
+      .to(qa('.walk', plan), { opacity: 1, duration: .8 }, 1.2)
+      .to(qa('.pin, .lbl', plan), { opacity: 1, scale: 1, duration: .7, stagger: .06, ease: 'back.out(2)' }, 1.4), 'top 75%');
+  }
+
+  /* ===== Offres : rangée épinglée qui défile à l'horizontale (ordinateur) ===== */
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 861px)', () => {
+    const track = q('[data-track]');
+    const dist = () => Math.max(0, track.scrollWidth - innerWidth);
+    gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: '.offers__pin', start: 'center center', end: () => '+=' + dist() * 1.2, pin: true, scrub: .8, invalidateOnRefresh: true } });
+  });
+
+  /* ===== Footer : nom géant lettre par lettre ===== */
+  const fw = qa('.foot__word span');
+  gsap.set(fw, { yPercent: 100, opacity: 0 });
+  once(q('.foot__word'), gsap.to(fw, { yPercent: 0, opacity: 1, duration: 1.2, stagger: .04, ease: 'expo.out', paused: true }), 'top 95%');
+
+  /* Liens d'ancre via Lenis */
+  qa('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length < 2 || !lenis) return;
+    const target = q(id);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: id === '#univers' || id === '#detente' ? 0 : -20, duration: 1.4 });
+  }));
+
+  addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
